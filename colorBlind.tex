@@ -8,6 +8,7 @@
 \baselineskip=17pt %%% after \begin{document}
 \usepackage{graphicx,latexsym,bm,amsmath,amssymb,verbatim,multicol,lscape}
 \usepackage{enumerate}
+\usepackage {cancel}
 % ----------------------------------------------------------------
 \vfuzz2pt % Don't report over-full v-boxes if over-edge is small
 \hfuzz2pt % Don't report over-full h-boxes if over-edge is small
@@ -38,10 +39,10 @@
 \newcommand{\BX}{\mathbf{B}(X)}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\SSS}{\stackrel}
+\newcommand{\pdet}[1]{            \sqrt{\abs{   \det    \left(#1 #1^\dagger \right)   }}               }
 
 
-
-\title{No Optical Lens Can Fix Color-Blindness}
+\title{No Hermitian Lens Can Improve Color-Blindness---a Mathematical Proof}
 \author{J.L.}
 \date{\today}
 
@@ -50,7 +51,7 @@
 \maketitle
 
 \begin{abstract}
-This paper investigates the fundamental limitations of using optical lenses to correct color-blindness. We approach this problem by modelling the vision system, which includes the lens and the human eye, as a mixed quantum system. Through a mathematical proof, we demonstrate that color blindness, which can be represented as an illness\footnote{Pun intended.} in the color perception matrix, cannot be rectified by any unitary transformation corresponding to an optical lens. Our findings have implications for the design of corrective devices and challenge common practices in the field of vision science.
+This paper investigates the fundamental limitations of using optical lenses to correct color-blindness. We approach this problem by modelling the vision system, which includes the lens and the human eye, as a mixed quantum system. Through a mathematical proof, we demonstrate that color blindness, which can be represented as an illness\footnote{No pun intended.} in the color perception matrix, cannot be rectified by any unitary transformation corresponding to an optical lens. Our findings have implications for the design of corrective devices and challenge common practices in the field of vision science.
 \end{abstract}
 
 \section{Introduction}
@@ -71,7 +72,7 @@ The propagation of light through an optical system, as a quantum process, is gov
 \[
 i\hbar \frac{\partial \psi}{\partial t} = H \psi
 \]
-where \( \psi \) is the light, \( \hbar \) is the reduced Planck's constant, and \( H \) is a \emph{Hermitian} operator representing the lens.
+where \( \psi \) is the light, \( \hbar \) is the reduced Planck's constant, and \( H \) is a Hamiltonian operator representing the lens.
 
 The solution to the Schrödinger equation gives us the evolution $U$ of the light wave.
 \begin{defn}
@@ -86,7 +87,7 @@ The relation between light before and after passing the lens, $\psi,\psi' \in \P
 \psi' = U \psi \\
 \end{eqnarray}
 \begin{lem}
-$U$ is unitary if and only if $H$ is Hermitian (which it is). 
+$U$ is unitary if and only if $H$ is Hermitian (which it is in the context of this paper). 
 \end{lem}
 
 \subsection{Linear Transformation as Human vision}
@@ -109,37 +110,35 @@ Under this assumption, we can view $V$ as a matrix, and we would drop the parent
 \subsection{Inability to Correct Color-Blindness}
 Since color-blindness corresponds to a rank deficiency in the color perception matrix, and since unitary transformations cannot increase the rank of a matrix, it follows that no optical lens (modeled as a unitary transformation) can correct color-blindness. The mathematical proof of this result is outlined below.
 
-A normal vision system perceives color $\vec{c}= (r,g,b)$,
+A normal vision system perceives color $\vec{c}= (r,g,b)$, with proper normalization, in the following process, 
 \begin{equation}
 \vec{c} = V \psi 
 \end{equation}
-
-\begin{defn}
-A normal color vision is characterized by 
+as such, a normal color vision is characterized by 
 \begin{equation}
 \rank(V)=3
 \end{equation}
-\end{defn}
+
 
 \begin{defn}
-A fully-color-blind vision is characterized by 
+A strongly-color-blind vision is characterized by 
 \begin{equation}
-\rank(V)<3
+\rank(V)\leq 2
 \end{equation}
 or equivalently
 \begin{equation}
-\det(V V^\dagger) = 0
+\pdet{V}= 0
 \end{equation}
 and weakly-color-blind vision is characterized by 
 \begin{equation}
-\det(V V^\dagger) \approx 0
+\pdet{V}\approx 0
 \end{equation}
 \end{defn}
 
 \begin{lem}
-With an empirically obtained value $\eps$, both fully-color-blind and weakly-color-blind vision are characterized by 
+With an empirically obtained value $\eps$, both strongly-color-blind and weakly-color-blind vision are characterized by 
 \begin{equation}
-\abs{\det(V V^\dagger) } < \eps
+\pdet{V} < \eps
 \end{equation}
 \end{lem}
 
@@ -163,15 +162,15 @@ V' V'^\dagger = V V^\dagger
 \textbf{Proof:} 
 \begin{eqnarray}
 V' V'^\dagger = VU (VU)^\dagger 
-                      =  VU U^\dagger V^\dagger 
+                      =  V \cancel{ U U^\dagger } V^\dagger 
                       =  V V^\dagger 
 \end{eqnarray}
 
 \begin{thm}
 \begin{equation}
-\abs{\det(V V^\dagger) } < \eps \iff  \abs{\det(V' V'^\dagger) } < \eps
+\pdet{V} < \eps \iff  \pdet{V'} < \eps
 \end{equation}
-Hence, for any optical lens used to correct the vision, a color-blind vision will remain color blind.
+Hence, for any Hermitian lens used to correct the vision, a color-blind vision will remain color blind.
 \end{thm}
 
 \section{Discussion}
@@ -179,24 +178,21 @@ Hence, for any optical lens used to correct the vision, a color-blind vision wil
 The implications of the results presented in this paper are profound for both the scientific understanding of color vision and the design of corrective devices for color-blindness. Our theoretical analysis shows that color-blindness, which is fundamentally a rank-deficiency problem in the color perception matrix, cannot be corrected by any unitary transformation that an optical lens might perform.
 
 \subsection{Limitations of Optical Corrections}
-The results suggest that the limitations of optical lenses are inherent in their design. Since lenses function by modifying the incoming light through linear transformations (which are unitary in nature), they are constrained by the mathematical properties of these transformations. While certain optical lenses may improve contrast or shift the perceived color spectrum, they do not alter the fundamental issue of color receptor deficiency in the eye. This finding aligns with the fact that current color-blindness correction lenses often do not restore normal color vision but instead enhance specific visual cues.
+The results suggest that the limitations of optical lenses are inherent. Since lenses function by modifying the incoming light through linear transformations (which are unitary in nature), they are constrained by the mathematical properties of these transformations. While certain optical lenses may improve contrast or shift the perceived color spectrum, they do not alter the fundamental issue of color receptor deficiency in the eye. This finding aligns with the fact that current color-blindness correction lenses often do not restore normal color vision but instead enhance specific visual cues.
 
 \subsection{Broader Implications for Vision Science}
 The linearity of perception and the rank-preserving nature of unitary transformations prompt a reconsideration of how we model human vision and the correction of its deficiencies. Color-blindness represents a fundamental problem in the mapping from the space of light inputs to the space of perceived colors, which cannot be resolved by any unitary process alone. This highlights the need for alternative approaches that go beyond traditional optical methods, potentially involving non-linear transformations or neural-level interventions.
-
-\subsection{Future Directions}
-Future research should explore non-optical methods for addressing color-blindness. Potential avenues include genetic therapies aimed at modifying photoreceptor functionality or advanced neural prosthetics that can bypass the deficient color channels in the eye. Additionally, the exploration of non-linear optics or quantum computing techniques might offer new perspectives on the problem of correcting color vision deficiencies.
 
 Moreover, while this paper focuses on color-blindness, the broader framework can be applied to other visual impairments that involve rank deficiencies or other forms of degeneracy in the perceptual system. Understanding the mathematical and physical constraints of optical systems may provide insights into the fundamental limits of sensory correction and enhancement technologies.
 
 
 \section*{Conflicts of Interest}
-The authors declare no conflict of interest.
+The authors declare no conflict of interest. The author is not a shareholder of any color correcting lenses companies, including but not limited to: enchroma, colormax, pilestone, colorlite, etc. 
 
 
 
 \section{Conclusion}
-This paper demonstrates that color-blindness cannot be corrected by any optical lens, as such lenses are represented by unitary transformations that preserve the rank of the color perception matrix. Our findings suggest that alternative approaches, potentially involving non-optical methods, are necessary for addressing color-blindness. Future work may explore the implications of this result for the design of visual aids and for our understanding of the limits of optical correction.
+This paper demonstrates that color-blindness cannot be corrected by any Hermitian optical lens, as such lenses are represented by unitary transformations that preserve the rank of the color perception matrix. Consider the extra cognitive burden introduced by the lenses, they would only worsen the condition. Our findings suggest that alternative approaches, potentially involving non-optical methods, are necessary for addressing color-blindness. Future work may explore the implications of this result for the design of visual aids and for our understanding of the limits of optical correction.
 
 \bibliographystyle{plain}
 \bibliography{references}
