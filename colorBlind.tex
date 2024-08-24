@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{bbm}
 \usepackage{mathrsfs}
@@ -42,7 +42,7 @@
 \newcommand{\pdet}[1]{            \sqrt{\abs{   \det    \left(#1 #1^\dagger \right)   }}               }
 
 
-\title{No Hermitian Lens Can Improve Color-Blindness---a Mathematical Proof}
+\title{No Hermitian Lens Can Correct Color-Blindness\\---a Mathematical Proof}
 \author{J.L.}
 \date{\today}
 
@@ -55,7 +55,7 @@ This paper investigates the fundamental limitations of using optical lenses to c
 \end{abstract}
 
 \section{Introduction}
-Color-blindness is a well-known visual impairment where individuals have difficulty distinguishing between certain colors. Traditionally, corrective lenses have been developed to enhance contrast and help individuals perceive colors differently. However, these lenses do not truly "correct" color-blindness in the sense of distinguishing previously-undistinguishable colors. 
+Color-blindness is a well-known visual impairment where individuals have difficulty distinguishing between certain colors. Traditionally, corrective lenses have been developed to enhance contrast and help individuals perceive colors differently. However, these lenses do not truly ``correct" color-blindness in the sense of distinguishing previously-undistinguishable colors. 
 
 In this paper, we explore the theoretical underpinnings of why no optical lens can correct color-blindness at all. We model the vision system, which includes the lens and the human eye, as a mixed quantum system, and analyze its behavior using linear algebra theory. We demonstrate that since an optical lens must be represented as a unitary transformation, it cannot reverse the rank of the color perception matrix associated with color-blindness.
 
@@ -91,10 +91,10 @@ $U$ is unitary if and only if $H$ is Hermitian (which it is in the context of th
 \end{lem}
 
 \subsection{Linear Transformation as Human vision}
-The vision system is a process that converts light to intensity of response of photoreceptors, and there are 3 of them for a normal human. 
+The vision system is a process that converts light to intensity of response of different kinds of photoreceptors. If a vision system has $n$ kinds of functioning photoreceptors, the vision system is said to be normal. 
 \begin{defn}
 \begin{equation}
-V:\Psi \rightarrow \Real^3
+V:\Psi \rightarrow \Real^n
 \end{equation}
 \end{defn}
 We reasonable assume $V$ is a linear process.
@@ -110,29 +110,30 @@ Under this assumption, we can view $V$ as a matrix, and we would drop the parent
 \subsection{Inability to Correct Color-Blindness}
 Since color-blindness corresponds to a rank deficiency in the color perception matrix, and since unitary transformations cannot increase the rank of a matrix, it follows that no optical lens (modeled as a unitary transformation) can correct color-blindness. The mathematical proof of this result is outlined below.
 
-A normal vision system perceives color $\vec{c}= (r,g,b)$, with proper normalization, in the following process, 
+A normal vision system perceives color as $\vec{c}$ with $\dim(\vec{c})=n$, with proper normalization, in the following process\footnote{For example, $\vec{c}:= (r,g,b)$; or, $\vec{c}:= (r,g,b,v)$ if we account for all photoreceptors, both rods and cones.}, 
 \begin{equation}
 \vec{c} = V \psi 
 \end{equation}
 as such, a normal color vision is characterized by 
 \begin{equation}
-\rank(V)=3
+\rank(V)=n
 \end{equation}
 
 
 \begin{defn}
 A strongly-color-blind vision is characterized by 
 \begin{equation}
-\rank(V)\leq 2
+\rank(V)\leq n-1
 \end{equation}
 or equivalently
 \begin{equation}
 \pdet{V}= 0
 \end{equation}
-and weakly-color-blind vision is characterized by 
+and weakly-color-blind vision is hence characterized by 
 \begin{equation}
 \pdet{V}\approx 0
 \end{equation}
+This quantity is analogous to the  $n$-dimensional volume of the perceived vision-space.
 \end{defn}
 
 \begin{lem}
