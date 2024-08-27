@@ -64,7 +64,7 @@ In this paper, we explore the theoretical underpinnings of why no optical lens c
 Optical lenses, while typically described in classical terms, are fundamentally quantum devices. Specifically, the evolution of light as it passes through an optical system can be described by a unitary transformation, denoted by \( U \). Unitary transformations satisfy  \( U^{-1}= U^\dagger \), corresponding to the physical principle of the Schr\"{o}dinger's equation.
 
 \subsection{Modelling Color Perception}
-Color perception in the human eye is mediated by three types of photoreceptors (cones), which respond to different wavelengths of light. These responses can be modeled as vectors in a three-dimensional color space. Under normal vision, the span of these receptor responses allows for the perception of a wide range of colors. However, in individuals with color-blindness, one or more of these photoreceptors is deficient, leading to a reduction in the effective rank of the color perception matrix.
+Color perception in the human eye is mediated by three types of photoreceptors (cones), which respond to different wavelengths of light. These responses can be modeled as vectors in a color space. Under normal vision, the span of these receptor responses allows for the perception of a wide range of colors. However, in individuals with color-blindness, one or more of these photoreceptors is deficient, leading to a reduction in the effective rank of the color perception matrix, $V$, defined in the next section.
 
 \section{Theoretical Analysis}
 \subsection{Unitary Transformation as Quantum Process}
@@ -72,9 +72,7 @@ The propagation of light through an optical system, as a quantum process, is gov
 \[
 i\hbar \frac{\partial \psi}{\partial t} = H \psi
 \]
-where \( \psi \) is the light, \( \hbar \) is the reduced Planck's constant, and \( H \) is a Hamiltonian operator representing the lens.
-
-The solution to the Schrödinger equation gives us the evolution $U$ of the light wave.
+where \( \psi \) is the light, \( \hbar \) is the reduced Planck's constant, and \( H \) is a Hamiltonian operator representing the lens. The solution to the Schr\"{o}dinger equation gives us the evolution $U$ of the light wave.
 \begin{defn}
 \begin{eqnarray}
 U:\Psi \rightarrow \Psi\\
@@ -83,35 +81,36 @@ U = e^{-iHt/\hbar}
 where $\Psi$ is the Hilbert space\cite{linearAlgebra} for light. 
 \end{defn}
 
-The relation between light before and after passing the lens, $\psi,\psi' \in \Psi$, is given by  
+The relation between the light before and after passing the lens, $\psi_0,\psi_1 \in \Psi$, is given by  
 \begin{eqnarray}
-\psi' = U \psi \\
+\psi_1 = U \psi_0 
 \end{eqnarray}
 \begin{lem}
 $U$ is unitary if and only if $H$ is Hermitian (which it is in the context of this paper). 
 \end{lem}
 
-\subsection{Linear Transformation as Human vision}
+\subsection{Linear Transformation as Human Vision}
 The vision system is a process that converts light to intensity of response of different kinds of photoreceptors. If a vision system has $n$ kinds of functioning photoreceptors, the vision system is said to be normal. 
 \begin{defn}
 \begin{equation}
 V:\Psi \rightarrow \Real^n
 \end{equation}
 \end{defn}
-We reasonable assume $V$ is a linear process.
+
 \begin{ass}
+We reasonably assume $V$ is a linear process.
 \begin{eqnarray}
 V(\psi_1+\psi_2)&=&V(\psi_1)+V(\psi_2)\\
 V(\alpha \psi)&=&\alpha V(\psi)
 \end{eqnarray}
 \end{ass}
-Under this assumption, we can view $V$ as a matrix, and we would drop the parenthesis, notationally.
+Under this assumption, we can view $V$ as a color perception matrix, and we would omit the parenthesis, notationally.
 
 
 \subsection{Inability to Correct Color-Blindness}
-Since color-blindness corresponds to a rank deficiency in the color perception matrix, and since unitary transformations cannot increase the rank of a matrix, it follows that no optical lens (modeled as a unitary transformation) can correct color-blindness. The mathematical proof of this result is outlined below.
+Since color-blindness corresponds to a rank deficiency in the color perception matrix $V$, and since unitary transformations cannot increase the rank of a matrix, it follows that no optical lens (modeled as a unitary transformation) can correct color-blindness. The mathematical proof of this result is outlined below.
 
-A normal vision system perceives color as $\vec{c}$ with $\dim(\vec{c})=n$, with proper normalization, in the following process\footnote{For example, $\vec{c}:= (r,g,b)$; or, $\vec{c}:= (r,g,b,v)$ if we account for all photoreceptors, both rods and cones.}, 
+A normal vision system perceives color as $\vec{c}$ with $\dim(\vec{c})=n$, in the following process\footnote{For example, with proper normalization, $\vec{c}:= (r,g,b)$; or, $\vec{c}:= (r,g,b,v)$ if we account for all photoreceptors, both rods and cones.}, 
 \begin{equation}
 \vec{c} = V \psi 
 \end{equation}
@@ -130,7 +129,7 @@ or equivalently
 \begin{equation}
 \pdet{V}= 0
 \end{equation}
-and *anomaly-color-blind vision is hence characterized by 
+and *anomaly-color-blind vision is likewise characterized by 
 \begin{equation}
 \pdet{V}\approx 0
 \end{equation}
